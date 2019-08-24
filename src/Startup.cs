@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Nest;
 
 namespace Logging
 {
@@ -24,9 +25,14 @@ namespace Logging
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var settings = new ConnectionSettings(new Uri("http://127.0.0.1:9200")).DefaultIndex("logs");
+            services.AddSingleton<IElasticClient>(new ElasticClient(settings));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             //services.AddMvcCore();
             services.AddApiVersioning();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

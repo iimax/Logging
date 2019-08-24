@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Logging.Models;
 using Microsoft.AspNetCore.Mvc;
+using Nest;
 
 namespace Logging.Controllers
 {
@@ -12,11 +14,29 @@ namespace Logging.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IElasticClient _elasticClient;
+        public ValuesController(IElasticClient elasticClient)
+        {
+            _elasticClient = elasticClient;
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<DeviceLogModel>>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var searchResponse = await _elasticClient.SearchAsync<DeviceLogModel>(s => s
+                .From(0)
+                .Size(10)
+                .Query(q => q
+                     .Match(m => m
+                        .Field(f => f.Msg)
+                        .Query("hello")
+                     )
+                )
+            );
+
+            var people = searchResponse.Documents;
+            return people.ToArray();
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
@@ -28,8 +48,31 @@ namespace Logging.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async void Post([FromBody] string value)
         {
+            //var settings = new ConnectionSettings(new Uri("http://127.0.0.1:9200")).DefaultIndex("logs");
+
+            //_elasticClient = new ElasticClient(settings);
+
+            var log = new DeviceLogModel { Time = DateTime.Now, Level = "INFO", Msg = value };
+            //var indexResponse = _elasticClient.IndexDocument(log);
+            var response = await _elasticClient.IndexDocumentAsync(log);
+            //返回结构示例：
+            /*# POST /db/user/1
+{
+  "_index": "db",
+  "_type": "user",
+  "_id": "1",
+  "_version": 1,
+  "result": "created",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 2,
+  "_primary_term": 1
+}*/
         }
 
         // PUT api/values/5
