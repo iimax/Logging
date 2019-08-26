@@ -1,0 +1,66 @@
+2019-08-26 22:41:08.008 +08:00 [INF] Hello, world!
+2019-08-26 22:41:12.643 +08:00 [DBG] Hosting starting
+2019-08-26 22:41:13.006 +08:00 [INF] User profile is available. Using 'C:\Users\iimax\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-08-26 22:41:13.056 +08:00 [DBG] Compatibility switch AllowInputFormatterExceptionMessages in type MvcJsonOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:13.076 +08:00 [DBG] Reading data from file 'C:\Users\iimax\AppData\Local\ASP.NET\DataProtection-Keys\key-e0247d87-e213-4dac-9f3b-484798fa432b.xml'.
+2019-08-26 22:41:13.332 +08:00 [DBG] Found key "e0247d87-e213-4dac-9f3b-484798fa432b".
+2019-08-26 22:41:13.369 +08:00 [DBG] Considering key "e0247d87-e213-4dac-9f3b-484798fa432b" with expiration date "2019-11-22T14:55:15.6162064+00:00" as default key.
+2019-08-26 22:41:13.467 +08:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2019-08-26 22:41:13.467 +08:00 [DBG] Decrypting secret element using Windows DPAPI.
+2019-08-26 22:41:13.469 +08:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2019-08-26 22:41:13.470 +08:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2019-08-26 22:41:13.472 +08:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2019-08-26 22:41:13.476 +08:00 [DBG] Using key "e0247d87-e213-4dac-9f3b-484798fa432b" as the default key.
+2019-08-26 22:41:13.477 +08:00 [DBG] Key ring with default key "e0247d87-e213-4dac-9f3b-484798fa432b" was loaded during application startup.
+2019-08-26 22:41:13.815 +08:00 [DBG] Compatibility switch AllowCombiningAuthorizeFilters in type MvcOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:13.815 +08:00 [DBG] Compatibility switch AllowBindingHeaderValuesToNonStringModelTypes in type MvcOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:13.815 +08:00 [DBG] Compatibility switch AllowValidatingTopLevelNodes in type MvcOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:13.815 +08:00 [DBG] Compatibility switch InputFormatterExceptionPolicy in type MvcOptions is using compatibility value "MalformedInputExceptions" for version "Version_2_2"
+2019-08-26 22:41:13.815 +08:00 [DBG] Compatibility switch SuppressBindingUndefinedValueToEnumType in type MvcOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:13.815 +08:00 [DBG] Compatibility switch EnableEndpointRouting in type MvcOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:13.815 +08:00 [DBG] Compatibility switch MaxValidationDepth in type MvcOptions is using compatibility value 32 for version "Version_2_2"
+2019-08-26 22:41:13.816 +08:00 [DBG] Compatibility switch AllowShortCircuitingValidationWhenNoValidatorsArePresent in type MvcOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:13.990 +08:00 [DBG] Compatibility switch SuppressMapClientErrors in type ApiBehaviorOptions is using default value false
+2019-08-26 22:41:13.990 +08:00 [DBG] Compatibility switch SuppressUseValidationProblemDetailsForInvalidModelStateResponses in type ApiBehaviorOptions is using default value false
+2019-08-26 22:41:13.990 +08:00 [DBG] Compatibility switch AllowInferringBindingSourceForCollectionTypesAsFromQuery in type ApiBehaviorOptions is using default value false
+2019-08-26 22:41:14.042 +08:00 [DBG] Compatibility switch AllowAreas in type RazorPagesOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:14.042 +08:00 [DBG] Compatibility switch AllowMappingHeadRequestsToGetHandler in type RazorPagesOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:14.042 +08:00 [DBG] Compatibility switch AllowDefaultHandlingForOptionsRequests in type RazorPagesOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:14.190 +08:00 [DBG] Compatibility switch AllowRecompilingViewsOnFileChange in type RazorViewEngineOptions is using explicitly configured value true
+2019-08-26 22:41:14.467 +08:00 [DBG] Compatibility switch SuppressTempDataAttributePrefix in type MvcViewOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:14.467 +08:00 [DBG] Compatibility switch AllowRenderingMaxLengthAttribute in type MvcViewOptions is using compatibility value true for version "Version_2_2"
+2019-08-26 22:41:14.639 +08:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.Versioning.ApiVersionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexTypeModelBinderProvider"]
+2019-08-26 22:41:15.511 +08:00 [DBG] Hosting started
+2019-08-26 22:41:15.511 +08:00 [DBG] Loaded hosting startup assembly Logging
+2019-08-26 22:41:15.511 +08:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Server.IISIntegration
+2019-08-26 22:41:15.979 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:53008/  
+2019-08-26 22:41:15.983 +08:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2019-08-26 22:41:16.055 +08:00 [DBG] No candidates found for the request path '/'
+2019-08-26 22:41:16.056 +08:00 [DBG] Request did not match any endpoints
+2019-08-26 22:41:16.144 +08:00 [INF] Request finished in 165.5374ms 404 
+2019-08-26 22:41:38.460 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:53008/api/v1/values  
+2019-08-26 22:41:38.472 +08:00 [DBG] 1 candidate(s) found for the request path '/api/v1/values'
+2019-08-26 22:41:38.476 +08:00 [DBG] Endpoint 'Logging.Controllers.ValuesController.Get (Logging)' with route pattern 'api/v{version:apiVersion}/Values' is valid for the request path '/api/v1/values'
+2019-08-26 22:41:38.491 +08:00 [DBG] Request matched endpoint 'Logging.Controllers.ValuesController.Get (Logging)'
+2019-08-26 22:41:38.491 +08:00 [INF] Executing endpoint 'Logging.Controllers.ValuesController.Get (Logging)'
+2019-08-26 22:41:38.707 +08:00 [INF] Route matched with {action = "Get", controller = "Values"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[Logging.Models.DeviceLogModel]]] Get() on controller Logging.Controllers.ValuesController (Logging).
+2019-08-26 22:41:38.710 +08:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2019-08-26 22:41:38.711 +08:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter"]
+2019-08-26 22:41:38.711 +08:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2019-08-26 22:41:38.711 +08:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2019-08-26 22:41:38.712 +08:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2019-08-26 22:41:38.738 +08:00 [INF] Executing action method Logging.Controllers.ValuesController.Get (Logging) - Validation state: "Valid"
+2019-08-26 22:41:42.448 +08:00 [INF] Executed action method Logging.Controllers.ValuesController.Get (Logging), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3704.7324000000003ms.
+2019-08-26 22:41:42.459 +08:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"]
+2019-08-26 22:41:42.462 +08:00 [DBG] No information found on request to perform content negotiation.
+2019-08-26 22:41:42.462 +08:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2019-08-26 22:41:42.462 +08:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2019-08-26 22:41:42.462 +08:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter' and content type 'application/json' to write the response.
+2019-08-26 22:41:42.463 +08:00 [INF] Executing ObjectResult, writing value of type 'Logging.Models.DeviceLogModel[]'.
+2019-08-26 22:41:42.685 +08:00 [INF] Executed action Logging.Controllers.ValuesController.Get (Logging) in 3969.5348000000004ms
+2019-08-26 22:41:42.688 +08:00 [INF] Executed endpoint 'Logging.Controllers.ValuesController.Get (Logging)'
+2019-08-26 22:41:42.696 +08:00 [INF] Request finished in 4235.7447ms 200 application/json; charset=utf-8
+2019-08-26 22:41:42.882 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:53008/favicon.ico  
+2019-08-26 22:41:42.882 +08:00 [DBG] No candidates found for the request path '/favicon.ico'
+2019-08-26 22:41:42.882 +08:00 [DBG] Request did not match any endpoints
+2019-08-26 22:41:42.883 +08:00 [INF] Request finished in 1.6861ms 404 

@@ -1,0 +1,5 @@
+﻿浅谈Elasticsearch安全策略
+https://bbs.360.cn/thread-14813424-1-1.html
+
+Elasticsearch 安全功能入门
+https://www.elastic.co/cn/blog/getting-started-with-elasticsearch-security
