@@ -33,9 +33,6 @@ namespace Logging.Controllers
         [HttpPost]
         public async void Post([FromBody]DeviceLogModel model)
         {
-            //var settings = new ConnectionSettings(new Uri("http://127.0.0.1:9200")).DefaultIndex("logs");
-            //_elasticClient = new ElasticClient(settings);
-
             try
             {
                 if (model == null)
@@ -86,9 +83,9 @@ namespace Logging.Controllers
 
                 var log = _mapper.Map<LogModelToES>(model);
                 log.Product = product;
-                //log.LocalTime = log.Time.ToUniversalTime();
                 log.Time = DateTime.Now.ToUniversalTime();
                 log.DeviceId = deviceId;
+                // ThreadId, Logger
 
                 if (_logByDevice)
                 {
