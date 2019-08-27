@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Logging.Models
 {
+    /// <summary>
+    /// log4net log model
+    /// </summary>
     public class DeviceLogModel
     {
         public string DeviceNO { get; set; }
@@ -18,12 +21,12 @@ namespace Logging.Models
         public string RenderedMessage { get; set; }
 
         /// <summary>
-        /// 逐渐废弃此属性
+        /// will mark as obsolete
         /// </summary>
         public Exception ExceptionObject { get; set; }
 
         /// <summary>
-        /// 将exception用字符串传递
+        /// exception object as string
         /// </summary>
         public string Exceptions { get; set; }
         

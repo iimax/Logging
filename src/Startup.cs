@@ -27,7 +27,16 @@ namespace Logging
         public void ConfigureServices(IServiceCollection services)
         {
             var settings = new ConnectionSettings(new Uri("http://127.0.0.1:9200")).DefaultIndex("logs");
+            //log.Time.ToString("yyyy-MM-dd HH:mm:sszzz")
             services.AddSingleton<IElasticClient>(new ElasticClient(settings));
+
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperProfileConfiguration());
+            });
+
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             //services.AddMvcCore();

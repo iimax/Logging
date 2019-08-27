@@ -21,19 +21,19 @@ namespace Logging.Controllers
         }
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DeviceLogModel>>> Get()
+        public async Task<ActionResult<IEnumerable<LogModelToES>>> Get()
         {
-            var searchResponse = await _elasticClient.SearchAsync<DeviceLogModel>(s => s
-                .From(0)
-                .Size(10)
-                .Query(q => q
-                     .Match(m => m
-                        .Field(f => f.Msg)
-                        .Query("hello")
-                     )
-                )
-            );
-
+            //var searchResponse = await _elasticClient.SearchAsync<LogModelToES>(s => s
+            //    .From(0)
+            //    .Size(10)
+            //    .Query(q => q
+            //         .Match(m => m
+            //            .Field(f => f.Msg)
+            //            .Query("price")
+            //         )
+            //    )
+            //);
+            var searchResponse = await _elasticClient.SearchAsync<LogModelToES>();
             var people = searchResponse.Documents;
             return people.ToArray();
             //return new string[] { "value1", "value2" };
@@ -54,7 +54,7 @@ namespace Logging.Controllers
 
             //_elasticClient = new ElasticClient(settings);
 
-            var log = new DeviceLogModel { Time = DateTime.Now, Level = "INFO", Msg = value };
+            var log = new DeviceLogModel { TimeStamp = DateTime.Now, Level = "INFO", RenderedMessage = value };
             //var indexResponse = _elasticClient.IndexDocument(log);
             var response = await _elasticClient.IndexDocumentAsync(log);
             //返回结构示例：

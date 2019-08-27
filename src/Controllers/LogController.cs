@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Logging.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Nest;
 
 namespace Logging.Controllers
@@ -15,13 +17,19 @@ namespace Logging.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     public class LogController : ControllerBase
     {
-        private IElasticClient _elasticClient;
-        public LogController(IElasticClient elasticClient)
+        private readonly IElasticClient _elasticClient;
+        private readonly IMapper _mapper;
+        private readonly ILogger<LogController> _logger;
+        private readonly bool _logByDevice = true;
+
+        public LogController(IElasticClient elasticClient, IMapper mapper, ILogger<LogController> logger)
         {
             _elasticClient = elasticClient;
+            _mapper = mapper;
+            _logger = logger;
         }
 
-        // POST api/values
+        // POST api/v{}/Log 将设备端的时间戳转换为字符串，以服务器的时间来作为es的filter
         [HttpPost]
         public async void Post([FromBody]DeviceLogModel model)
         {
@@ -30,28 +38,70 @@ namespace Logging.Controllers
 
             try
             {
-                if (DeviceNOBasedIndexCreator.NotExists(model.DeviceNO))
+                if (model == null)
                 {
-                    var x = await _elasticClient.Indices.ExistsAsync($"logs-{model.DeviceNO}");
-                    if (!x.Exists)
+                    return;
+                }
+                string deviceId = string.Empty, product = string.Empty;
+                if (string.IsNullOrWhiteSpace(model.DeviceNO))
+                {
+                    _logger.LogError("unknown log received: {model}", model);
+                    return;
+                }
+                //
+                var idx = model.DeviceNO.IndexOf("-");
+                if (idx < 0)
+                {
+                    _logger.LogError("unknown device log received: {model}", model);
+                    return;
+                }
+                deviceId = model.DeviceNO.Substring(0, idx);
+                product = model.DeviceNO.Substring(idx + 1);
+                if (string.IsNullOrWhiteSpace(deviceId))
+                {
+                    deviceId = "00000";
+                }
+                if (_logByDevice)
+                {
+                    if (DeviceNOBasedIndexCreator.NotExists(deviceId))
                     {
-                        var createIndexResponse = await _elasticClient.Indices.CreateAsync($"logs-{model.DeviceNO}");
-                        if (createIndexResponse.Acknowledged)
+                        var x = await _elasticClient.Indices.ExistsAsync($"logs-{deviceId}");
+                        _logger.LogInformation("logs-{deviceId} exist={x}", deviceId, x);
+                        if (!x.Exists)
                         {
-                            DeviceNOBasedIndexCreator.Created(model.DeviceNO);
+                            var createIndexResponse = await _elasticClient.Indices.CreateAsync($"logs-{deviceId}");
+                            _logger.LogInformation("create index logs-{deviceId} result={createIndexResponse}", deviceId, createIndexResponse);
+                            if (createIndexResponse.Acknowledged)
+                            {
+                                DeviceNOBasedIndexCreator.Created(deviceId);
+                            }
                         }
-                    }
-                    else
-                    {
-                        DeviceNOBasedIndexCreator.Created(model.DeviceNO);
+                        else
+                        {
+                            DeviceNOBasedIndexCreator.Created(deviceId);
+                        }
                     }
                 }
                 
+
+                var log = _mapper.Map<LogModelToES>(model);
+                log.Product = product;
+                //log.LocalTime = log.Time.ToUniversalTime();
+                log.Time = DateTime.Now.ToUniversalTime();
+                log.DeviceId = deviceId;
+
+                if (_logByDevice)
+                {
+                    var l = await _elasticClient.IndexAsync(log, (a) => { return a.Index($"logs-{deviceId}"); });
+                    _logger.LogInformation("index doc on logs-{deviceId} result={l}", deviceId, l);
+                }
+                else
+                {
+                    var response = await _elasticClient.IndexDocumentAsync(log);
+                    _logger.LogInformation("index doc on logs result={response}", response);
+                }
                 
-                var log = new LogModelToES { Time = DateTime.Now, Level = model.Level, Msg = model.RenderedMessage };
-                //_elasticClient.Index
-                var l = await _elasticClient.IndexAsync(model, (a)=> { return a.Index($"logs-{model.DeviceNO}"); } );
-                var response = await _elasticClient.IndexDocumentAsync(model);
+
                 //返回结构示例：
                 /*# POST /db/user/1
     {
@@ -71,8 +121,7 @@ namespace Logging.Controllers
             }
             catch (Exception ex)
             {
-
-                throw;
+                _logger.LogError(ex, "Failed to log");
             }
             
         }

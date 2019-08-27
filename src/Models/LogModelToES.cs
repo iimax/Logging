@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 namespace Logging.Models
 {
     /// <summary>
-    /// 定义写入ES里的日志结构
+    /// log structure will written into elasticsearch
     /// </summary>
     public class LogModelToES
     {
+        public string DeviceId { get; set; }
+
         public DateTime Time { get; set; }
+
+        /// <summary>
+        /// device time
+        /// </summary>
+        public string LocalTime { get; set; }
 
         public string Product { get; set; }
 
@@ -19,5 +26,10 @@ namespace Logging.Models
         public string Level { get; set; }
 
         public Exception Exception { get; set; }
+
+        /// <summary>
+        /// exception object as string
+        /// </summary>
+        public string Exceptions { get; set; }
     }
 }
