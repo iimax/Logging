@@ -43,7 +43,16 @@ namespace Logging
             
             services.AddApiVersioning();
 
-            
+            services.AddHttpClient("bbysDEVOPS", c =>
+            {
+                //Passing service base url  
+                c.BaseAddress = new Uri("https://yw.bbys.cn/");
+                
+                // 
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+                // Github requires a user-agent
+                c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,11 +72,11 @@ namespace Logging
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
+            //else
+            //{
+            //    app.UseHsts();
+            //}
+            //app.UseHttpsRedirection();
             
             app.UseMvc();
         }

@@ -17,12 +17,23 @@ namespace Logging
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Debug()
+            .MinimumLevel.Information()
             .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
             .CreateLogger();
-            Log.Information("Hello, world!");
-
-            CreateWebHostBuilder(args).Build().Run();
+            
+            try
+            {
+                Log.Information("Starting web host");
+                CreateWebHostBuilder(args).Build().Run();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
