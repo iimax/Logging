@@ -1,9 +1,11 @@
 ﻿var target = Argument("target", "Default");
 
+Task("Build").Does(() =>
+	{
+		MSBuild("./src/Logging.sln");
+	});
+
 Task("Default")
-  .Does(() =>
-{
-  Information("Hello World!");
-});
+  .IsDependentOn("build");
 
 RunTarget(target);
